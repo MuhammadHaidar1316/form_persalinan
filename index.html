@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catatan Persalinan Rumah Sakit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px; /* Memperlebar kontainer */
+            margin: 0 auto;
+            padding: 30px;
+            background: #fff;
+            border: 2px solid #000;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .header-title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .center-header {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            margin: 20px 0;
+            text-decoration: underline;
+        }
+        .section {
+            margin-top: 30px;
+        }
+        .section-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+        }
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            width: 200px;
+            padding-right: 10px;
+            box-sizing: border-box;
+            font-weight: bold;
+        }
+        .form-group input[type="text"], 
+        .form-group input[type="number"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .checkbox-group label {
+            margin-right: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #999;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #e2e2e2;
+        }
+        @media (max-width: 768px) {
+            .form-group {
+                flex-direction: column;
+            }
+            .form-group label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+        .note {
+            margin-top: 20px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-title">Lembar Partograf Bagian Belakang</div>
+            <div class="header-title">Persalinan Kala Satu</div>
+        </div>
+        <div class="center-header">CATATAN PERSALINAN</div>
+        
+        <!-- Informasi Umum -->
+        <div class="section">
+            <div class="section-title">Informasi Umum</div>
+            <div class="form-group">
+                <label for="tanggal">Tanggal:</label>
+                <input type="text" id="tanggal" placeholder="dd/mm/yyyy">
+            </div>
+            <div class="form-group">
+                <label for="penolong">Penolong Persalinan:</label>
+                <input type="text" id="penolong">
+            </div>
+        </div>
+
+        <!-- Kala 1 -->
+        <div class="section">
+            <div class="section-title">Kala 1</div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="partogram">
+                <label for="partogram">Partogram melewati garis waspada</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="lain-lain-kala1">
+                <label for="lain-lain-kala1">Lain-lain, sebutkan:</label>
+                <input type="text" placeholder="sebutkan...">
+            </div>
+            <div class="form-group">
+                <label for="hasil-kala1">Bagaimana hasilnya?</label>
+                <input type="text" id="hasil-kala1" placeholder="hasil...">
+            </div>
+        </div>
+
+        <!-- Kala 2 -->
+        <div class="section">
+            <div class="section-title">Kala 2</div>
+            <div class="form-group">
+                <label for="lama-kala2">Lama Kala 2:</label>
+                <input type="number" id="lama-kala2" placeholder="..."> menit
+            </div>
+            <div class="form-group">
+                <label>Episiotomi:</label>
+                <input type="checkbox" id="episiotomi-tidak">
+                <label for="episiotomi-tidak">Tidak</label>
+                <input type="checkbox" id="episiotomi-ya">
+                <label for="episiotomi-ya">Ya</label>
+                <input type="text" placeholder="indikasi..." style="margin-left:10px;">
+            </div>
+            <div class="form-group">
+                <label>Pendamping pada saat persalinan:</label>
+                <input type="checkbox" id="suami">
+                <label for="suami">Suami</label>
+                <input type="checkbox" id="keluarga">
+                <label for="keluarga">Keluarga</label>
+                <input type="checkbox" id="teman">
+                <label for="teman">Teman</label>
+                <input type="checkbox" id="dukun">
+                <label for="dukun">Dukun</label>
+                <input type="checkbox" id="tidak-ada">
+                <label for="tidak-ada">Tidak Ada</label>
+            </div>
+            <div class="form-group">
+                <label>Gawat Janin:</label>
+                <input type="checkbox" id="gawat-miring">
+                <label for="gawat-miring">Miringkan ibu ke sisi kiri</label>
+                <input type="checkbox" id="gawat-napas">
+                <label for="gawat-napas">Minta ibu menarik napas</label>
+                <input type="checkbox" id="gawat-episiotomi">
+                <label for="gawat-episiotomi">Episiotomi</label>
+            </div>
+            <div class="form-group">
+                <label>Distosia Bahu:</label>
+                <input type="checkbox" id="distosia-mc">
+                <label for="distosia-mc">Manuver Mc Robert</label>
+                <input type="checkbox" id="distosia-merangkak">
+                <label for="distosia-merangkak">Ibu Merangkak</label>
+                <input type="text" placeholder="sebutkan..." style="margin-left:10px;">
+            </div>
+            <div class="form-group">
+                <label for="lain-lain-kala2">Lain-lain, sebutkan:</label>
+                <input type="text" id="lain-lain-kala2" placeholder="sebutkan...">
+            </div>
+            <div class="form-group">
+                <label for="penatalaksanaan-kala2">Penatalaksanaan yang dilakukan:</label>
+                <input type="text" id="penatalaksanaan-kala2" placeholder="penatalaksanaan...">
+            </div>
+        </div>
+
+        <!-- Kala 3 -->
+        <div class="section">
+            <div class="section-title">Kala 3</div>
+            <div class="form-group">
+                <label for="lama-kala3">Lama Kala 3:</label>
+                <input type="number" id="lama-kala3" placeholder="..."> menit
+            </div>
+            <div class="form-group">
+                <label for="perdarahan-kala3">Jumlah Perdarahan:</label>
+                <input type="number" id="perdarahan-kala3" placeholder="..."> ml
+            </div>
+            <div class="form-group">
+                <label>Pemberian Oksitosin 10 U IM < 2 menit?</label>
+                <input type="checkbox" id="oksitosin-ya">
+                <label for="oksitosin-ya">Ya</label>
+                <input type="checkbox" id="oksitosin-tidak">
+                <label for="oksitosin-tidak">Tidak</label>
+                <input type="text" placeholder="alasan..." style="margin-left:10px;">
+            </div>
+            <div class="form-group">
+                <label>Pemberian Ulang Oksitosin (2X)?</label>
+                <input type="checkbox" id="ulang-oksitosin-ya">
+                <label for="ulang-oksitosin-ya">Ya</label>
+                <input type="checkbox" id="ulang-oksitosin-tidak">
+                <label for="ulang-oksitosin-tidak">Tidak</label>
+                <input type="text" placeholder="alasan..." style="margin-left:10px;">
+            </div>
+            <div class="form-group">
+                <label>Perengangan Tali Pusat Terkendali?</label>
+                <input type="checkbox" id="perengangan-ya">
+                <label for="perengangan-ya">Ya</label>
+                <input type="checkbox" id="perengangan-tidak">
+                <label for="perengangan-tidak">Tidak</label>
+                <input type="text" placeholder="alasan..." style="margin-left:10px;">
+            </div>
+            <div class="form-group">
+                <label>Masase Fundus Uteri?</label>
+                <input type="checkbox" id="masase-ya">
+                <label for="masase-ya">Ya</label>
+                <input type="checkbox" id="masase-tidak">
+                <label for="masase-tidak">Tidak</label>
+                <input type="text" placeholder="alasan..." style="margin-left:10px;">
+            </div>
+            <div class="form-group">
+                <label for="laserasi">Laserasi Perineum, derajat:</label>
+                <input type="text" id="laserasi" placeholder="derajat...">
+                <span style="margin-left:10px;">Tindakan:</span>
+                <input type="checkbox" id="penjahitan-anestesi">
+                <label for="penjahitan-anestesi">Penjahitan dengan/tanpa (*) anestesi</label>
+            </div>
+            <div class="form-group">
+                <label>Plasenta tidak lahir > 30 menit:</label>
+                <input type="checkbox" id="plasenta-manual">
+                <label for="plasenta-manual">Mengeluarkan secara manual</label>
+                <input type="checkbox" id="plasenta-merujuk">
+                <label for="plasenta-merujuk">Merujuk</label>
+                <input type="checkbox" id="plasenta-lain">
+                <label for="plasenta-lain">Tindakan lain:</label>
+                <input type="text" placeholder="sebutkan..." style="margin-left:10px;">
+            </div>
+            <div class="form-group">
+                <label>Atoni Uteri:</label>
+                <input type="checkbox" id="atoni-kompresi">
+                <label for="atoni-kompresi">Kompresi Bimanual Interna</label>
+                <input type="checkbox" id="atoni-metil">
+                <label for="atoni-metil">Metil Ergometrin 0,2 mg IM</label>
+                <input type="checkbox" id="atoni-oksitosin">
+                <label for="atoni-oksitosin">Oksitosin Drip</label>
+            </div>
+            <div class="form-group">
+                <label for="lain-lain-kala3">Lain-lain, sebutkan:</label>
+                <input type="text" id="lain-lain-kala3" placeholder="sebutkan...">
+            </div>
+            <div class="form-group">
+                <label for="penatalaksanaan-kala3">Penatalaksanaan yang dilakukan:</label>
+                <input type="text" id="penatalaksanaan-kala3" placeholder="penatalaksanaan...">
+            </div>
+            <div class="form-group">
+                <label for="hasil-kala3">Bagaimana hasilnya?</label>
+                <input type="text" id="hasil-kala3" placeholder="hasil...">
+            </div>
+        </div>
+
+        <!-- Bayi Baru Lahir -->
+        <div class="section">
+            <div class="section-title">Bayi Baru Lahir</div>
+            <div class="form-group">
+                <label for="berat-badan">Berat Badan:</label>
+                <input type="number" id="berat-badan" placeholder="..."> gram
+                <label for="panjang" style="margin-left:20px;">Panjang:</label>
+                <input type="number" id="panjang" placeholder="..."> cm
+            </div>
+            <div class="form-group">
+                <label>Jenis Kelamin:</label>
+                <input type="radio" id="jenis-p" name="jenis-kelamin" value="P">
+                <label for="jenis-p">P</label>
+                <input type="radio" id="jenis-l" name="jenis-kelamin" value="L">
+                <label for="jenis-l">L</label>
+            </div>
+            <div class="form-group">
+                <label>Nilai APGAR:</label>
+                <input type="number" placeholder="..." style="width: 50px;"> / 
+                <input type="number" placeholder="..." style="width: 50px;">
+            </div>
+            <div class="form-group">
+                <label>Pemberian ASI < 1 jam:</label>
+                <input type="checkbox" id="asi-ya">
+                <label for="asi-ya">Ya</label>
+                <input type="checkbox" id="asi-tidak">
+                <label for="asi-tidak">Tidak</label>
+                <input type="text" placeholder="alasan..." style="margin-left:10px;">
+            </div>
+            <div class="form-group">
+                <label>Bayi lahir pucat / biru / lemas:</label>
+                <input type="checkbox" id="pucat-mengeringkan">
+                <label for="pucat-mengeringkan">Mengeringkan</label>
+                <input type="checkbox" id="pucat-menghangatkan">
+                <label for="pucat-menghangatkan">Menghangatkan</label>
+                <input type="checkbox" id="pucat-bebaskan">
+                <label for="pucat-bebaskan">Bebaskan Jalan Nafas</label>
+                <input type="checkbox" id="pucat-stimulasi">
+                <label for="pucat-stimulasi">Stimulasi / Rangsang Taktil</label>
+                <input type="checkbox" id="pucat-lain">
+                <label for="pucat-lain">Lain-lain, sebutkan:</label>
+                <input type="text" placeholder="sebutkan..." style="margin-left:10px;">
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="cacat-bawaan">
+                <label for="cacat-bawaan">Cacat Bawaan, sebutkan:</label>
+                <input type="text" placeholder="sebutkan..." style="margin-left:10px;">
+                <input type="checkbox" id="hipotemi">
+                <label for="hipotemi">Hipotemi</label>
+            </div>
+            <div class="form-group">
+                <label for="penatalaksanaan-bayi">Penatalaksanaan yang dilakukan:</label>
+                <input type="text" id="penatalaksanaan-bayi" placeholder="penatalaksanaan...">
+            </div>
+            <div class="form-group">
+                <label for="hasil-bayi">Bagaimana hasilnya?</label>
+                <input type="text" id="hasil-bayi" placeholder="hasil...">
+            </div>
+        </div>
+
+        <!-- Pemantauan Persalinan Kala 4 -->
+        <div class="section">
+            <div class="section-title">Pemantauan Persalinan Kala 4</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jam Ke</th>
+                        <th>Waktu</th>
+                        <th>Tekanan Darah (mmHg)</th>
+                        <th>Nadi per Menit</th>
+                        <th>Suhu (°C)</th>
+                        <th>Tinggi Fundus Uteri</th>
+                        <th>Kontraksi Uterus</th>
+                        <th>Kandung Kemih</th>
+                        <th>Pendarahan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td><input type="text" placeholder="isi"></td>
+                        <td><input type="text" placeholder="isi"></td>
+                        <td><input type="text" placeholder="isi"></td>
+                        <td><input type="text" placeholder="isi"></td>
+                        <td><input type="text" placeholder="isi"></td>
+                        <td><input type="text" placeholder="isi"></td>
+                        <td><input type="text" placeholder="isi"></td>
+                        <td><input type="text" placeholder="isi"></td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td><input type="text" placeholder="isi"></td>
+                        <td><input type="text" placeholder="isi"></td>
+                        <td><input type="text" placeholder="isi"></td>
+                        <td><input type="text" placeholder="isi"></td>
+                        <td><input type="text" placeholder="isi"></td>
+                        <td><input type="text" placeholder="isi"></td>
+                        <td><input type="text" placeholder="isi"></td>
+                        <td><input type="text" placeholder="isi"></td>
+                    </tr>
+                    <!-- Tambahkan baris sesuai kebutuhan -->
+                </tbody>
+            </table>
+            <div class="form-group">
+                <label for="masalah-kala4">Masalah Kala 4:</label>
+                <input type="text" id="masalah-kala4">
+            </div>
+            <div class="form-group">
+                <label for="penatalaksanaan-kala4">Penatalaksanaan yang dilakukan:</label>
+                <input type="text" id="penatalaksanaan-kala4" placeholder="penatalaksanaan...">
+            </div>
+            <div class="form-group">
+                <label for="hasil-kala4">Bagaimana hasilnya?</label>
+                <input type="text" id="hasil-kala4" placeholder="hasil...">
+            </div>
+        </div>
+
+        <div class="note">(*) Coret yang tidak perlu.</div>
+    </div>
+</body>
+</html>
